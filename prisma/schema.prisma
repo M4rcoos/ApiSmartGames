@@ -17,6 +17,7 @@ model Game {
   idGame      Int    @id @default(autoincrement())
   nameGame    String
   price       Float
+  discount    Float?
   description String
   linkImage   String
 
