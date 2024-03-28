@@ -1,0 +1,70 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Game {
+  idGame      Int    @id @default(autoincrement())
+  nameGame    String
+  price       Float
+  description String
+  linkImage   String
+
+  gamePlatform Game_Platform[]
+  stores       Game_Store[]
+
+  @@map("games")
+}
+
+// Define o modelo Platform
+model Platform {
+  idPlatform   Int             @id @default(autoincrement())
+  namePlatform String
+  platformGame Game_Platform[]
+
+  @@map("platforms")
+}
+
+// Define o modelo Store
+model Store {
+  idStore        Int          @id @default(autoincrement())
+  adress         String
+  sales_quantity Int
+  nameStore      String
+  linkMap        String
+  games          Game_Store[]
+
+  @@map("stores")
+}
+
+model Game_Platform {
+  id_game_platform Int @id @default(autoincrement())
+
+  Game                Game?     @relation(fields: [game_IdGame], references: [idGame])
+  game_IdGame         Int?
+  Platform            Platform? @relation(fields: [platform_IdPlatform], references: [idPlatform])
+  platform_IdPlatform Int?
+
+  @@map("games_platforms")
+}
+
+model Game_Store {
+  id_game_store Int @id @default(autoincrement())
+
+  store_IdStore Int?
+  Store         Store? @relation(fields: [store_IdStore], references: [idStore])
+  game_IdGame   Int?
+  Game          Game?  @relation(fields: [game_IdGame], references: [idGame])
+
+  @@map("games_stores")
+}
