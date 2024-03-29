@@ -22,8 +22,8 @@ model Game {
   nameGame    String
   price       Float
   discount    Float?
-  description String
-  linkImage   String
+  description String @db.Text
+  linkImage   String @db.Text
 
   gamePlatform Game_Platform[]
   stores       Game_Store[]
@@ -43,10 +43,10 @@ model Platform {
 // Define o modelo Store
 model Store {
   idStore        Int          @id @default(autoincrement())
-  adress         String
+  adress         String  @db.Text
   sales_quantity Int
   nameStore      String
-  linkMap        String
+  linkMap        String @db.Text
   games          Game_Store[]
 
   @@map("stores")
