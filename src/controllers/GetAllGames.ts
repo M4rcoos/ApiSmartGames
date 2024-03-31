@@ -28,6 +28,7 @@ export const getAll =  async (req: Request, res: Response) => {
       const gamesWithPlatformsAndStores = games.map(game => {
         const platforms = game.gamePlatform.map(platform => ({idPlatform: platform.Platform?.idPlatform,namePlatform:platform.Platform?.namePlatform}));
         const stores = game.stores.map(store => ({
+          idStore: store.Store?.idStore,
           name: store.Store?.nameStore,
           address: store.Store?.adress,
           salesQuantity: store.Store?.sales_quantity,
