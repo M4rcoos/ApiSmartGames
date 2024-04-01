@@ -4,7 +4,7 @@ import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
-//controoler para atualizar a quantidade vendoida pela loja
+//controller para atualizar a quantidade vendida pela loja
 export const purchase =  async (req: Request, res: Response) => {
     //pego o id do jogo e o da loja pelos parametros, para poder atualizar!
     const {idGame, idStore} = req.params;
@@ -56,16 +56,13 @@ const store = await prisma.store.findUnique({
         }
     }
   });
-  
   // Verificar se a atualização foi bem-sucedida
   if (!updatedStore) {
     return res.status(500).json({ msg: "Erro ao atualizar a quantidade de vendas da loja." });
   }
-  
   // Agora você pode retornar a resposta com a loja atualizada
   return res.status(200).json(updatedStore);
-  
-    
+
     }catch(error){
         console.error('Erro ao atualizar as vendas do jogo:', error);
         return res.status(500).json({ error: 'Erro interno do servidor.' });
