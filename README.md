@@ -1,4 +1,19 @@
 
+
+TAREFAS CONCLUIDAS DESENVOLVIMENTO DA API
+
+[x] Integração com Web e mobile e Banco de Dados
+
+[x] Dados do excel estão no banco de dados
+
+[x] Criação da API com os verbos corretos do padrão REST
+
+[x] API retorna os dados
+
+[x] Aplicativo mobile consegue consumir a API de forma correta e funcional
+
+
+
 clone o repositório.
 Abra o projeto no seu ambiente de desenvolvimento Execute no CMD
 
